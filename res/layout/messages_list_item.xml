@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+
+    >
+    
+	 <TextView
+          android:id="@+id/messageListSender"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentTop="true"
+          android:textSize="14sp"
+          android:textStyle="bold" />
+ 
+		<TextView 
+		    android:id="@+id/messageReceivedTime"
+		    android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+            />	 
+	 
+       <TextView
+          android:id="@+id/messageListText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/messageListSender"
+          android:layout_marginTop="5dp"
+          android:maxLines="4"
+          android:textSize="16sp" />
+       
+       <TextView 
+           android:id="@+id/messageId"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/messageListSender"
+           android:visibility="gone"
+           />
+       <TextView 
+           android:id="@+id/conversationId"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/messageListSender"
+           android:visibility="gone"
+           />
+       
+</RelativeLayout>
