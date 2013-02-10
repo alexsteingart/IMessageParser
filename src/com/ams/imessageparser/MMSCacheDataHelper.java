@@ -239,4 +239,30 @@ public class MMSCacheDataHelper{
 		    return sb.toString();
 		}
 
+	 
+	 public static ArrayList<Message> createMessageArrayFromCursor(Cursor mc){
+		 
+		 ArrayList<Message> messages = new ArrayList<Message>();
+		 if(mc!=null && mc.moveToFirst()){
+			 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+				do{
+	    			Message m = new Message();
+	    			m.setBody(mc.getString(mc.getColumnIndex(MMSCacheOpenHelper.COLUMN_MESSAGE_TEXT)));
+	    			m.setFromNumber(mc.getString(mc.getColumnIndex(MMSCacheOpenHelper.COLUMN_MESSAGE_FROM)));
+	    			try{
+	    				m.setReceivedTime(sdf.parse(mc.getString(mc.getColumnIndex(MMSCacheOpenHelper.COLUMN_DATE))).getTime());
+	    			}catch(Exception e){
+	    				e.printStackTrace();
+	    			}
+	    			m.setMessageId(mc.getString(mc.getColumnIndex(MMSCacheOpenHelper.COLUMN_ID)));
+	    			m.setConversationId(mc.getString(mc.getColumnIndex(MMSCacheOpenHelper.COLUMN_CONVERSATION_ID)));
+	    			
+	    			messages.add(m);
+				}while(mc.moveToNext());
+				mc.close();
+			}
+		 
+		 return messages;
+	 }
+	 
 }

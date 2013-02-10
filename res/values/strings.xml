@@ -8,5 +8,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="title_activity_display_conversation">Display Conversation Activity</string>
     <string name="button_send">Send</string>
+    <string name="enterText">Enter Text</string>
 
 </resources>

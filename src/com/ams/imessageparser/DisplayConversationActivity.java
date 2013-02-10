@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class DisplayConversationActivity extends ListActivity {
 
@@ -53,8 +54,11 @@ public class DisplayConversationActivity extends ListActivity {
 				
 				String phoneNumberString = c.getString(c.getColumnIndex(MMSCacheOpenHelper.COLUMN_RECIPIENTS));
 				String[] pnArr = phoneNumberString.split(",");
-				String selectionStr = "";
+				
 				String title = "";
+				/**
+				 * TODO: create single query with IN clause instead of looping!
+				 */
 				for(int k=0; k<pnArr.length; k++){
 				
 				  String name=pnArr[k];
@@ -69,7 +73,7 @@ public class DisplayConversationActivity extends ListActivity {
 			    	contactCursor.close();
 			    	title += (k==0?"":", ")+name;
 				}
-		    	setTitle(title);
+		    	((TextView)findViewById(R.id.displayConversationTitle)).setText(title);
 			}while(c.moveToNext());
 			
 		}
@@ -90,8 +94,8 @@ public class DisplayConversationActivity extends ListActivity {
           }
         });
         
-        //LoadMessageList lml = new LoadMessageList(adapter);
-        //lml.execute(); 
+        LoadConversation lml = new LoadConversation(adapter);
+        lml.execute(cid); 
 		
 	}
 

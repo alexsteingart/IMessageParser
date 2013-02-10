@@ -20,18 +20,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class color {
         public static final int black_overlay=0x7f040000;
+        public static final int white=0x7f040001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int conversationId=0x7f080005;
-        public static final int menu_settings=0x7f080006;
-        public static final int message=0x7f080000;
-        public static final int messageId=0x7f080004;
-        public static final int messageListSender=0x7f080001;
-        public static final int messageListText=0x7f080003;
-        public static final int messageReceivedTime=0x7f080002;
+        public static final int button_send=0x7f080000;
+        public static final int conversationId=0x7f080006;
+        public static final int displayConversationTitle=0x7f080007;
+        public static final int editText1=0x7f080001;
+        public static final int menu_settings=0x7f080008;
+        public static final int messageId=0x7f080005;
+        public static final int messageListSender=0x7f080002;
+        public static final int messageListText=0x7f080004;
+        public static final int messageReceivedTime=0x7f080003;
     }
     public static final class layout {
         public static final int activity_display_conversation=0x7f030000;
@@ -49,6 +52,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int button_send=0x7f060006;
         public static final int dummy_button=0x7f060004;
         public static final int dummy_content=0x7f060003;
+        public static final int enterText=0x7f060007;
         public static final int hello_world=0x7f060001;
         public static final int menu_settings=0x7f060002;
         public static final int title_activity_display_conversation=0x7f060005;

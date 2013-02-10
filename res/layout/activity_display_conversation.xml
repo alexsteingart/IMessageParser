@@ -1,35 +1,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".DisplayConversationActivity" >
 
- 
-       <ListView
-          android:id="@android:id/list"
-          android:fadingEdge="vertical"
-          android:fadingEdgeLength="10dp"
-          android:longClickable="true"
-          
-          android:layout_width="match_parent"
-          android:layout_height="match_parent" >
-       </ListView>
-       
-	<EditText android:id="@+id/message"
-	    		android:inputType="textLongMessage"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_below="@android:id/list"
- 
-			/>
-				
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/button_send" 
-			android:onClick="sendMessage"
-			android:layout_toRightOf="@+id/message"
-			/>                                                 
+    <Button
+        android:id="@+id/button_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="sendMessage"
+        android:text="@string/button_send" />
 
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/button_send"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:fadingEdge="vertical"
+        android:fadingEdgeLength="10dp"
+        android:longClickable="true" >
+
+    </ListView>
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@layout/messages_list_item"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/button_send"
+        android:layout_toLeftOf="@+id/button_send"
+        android:ems="10"
+        android:hint="@string/enterText"
+        android:inputType="textMultiLine" 
+        android:background="@color/white"
+        >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>
