@@ -23,7 +23,10 @@
         android:layout_alignParentTop="true"
         android:fadingEdge="vertical"
         android:fadingEdgeLength="10dp"
-        android:longClickable="true" >
+        android:longClickable="true" 
+        android:transcriptMode="alwaysScroll" 
+        android:stackFromBottom="true"
+        >
 
     </ListView>
 

@@ -1,6 +1,7 @@
 package com.ams.imessageparser;
 
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +11,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.PhoneLookup;
 import android.support.v4.app.NavUtils;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -21,6 +24,9 @@ import android.widget.TextView;
 
 public class DisplayConversationActivity extends ListActivity {
 
+	
+	String recipients;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +56,10 @@ public class DisplayConversationActivity extends ListActivity {
 		
 		if(c!=null && c.moveToFirst()){
 		
+			TelephonyManager phn_mngr = (TelephonyManager)getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+			String PhnNo= phn_mngr.getLine1Number();
+			System.out.println(PhnNo);
+			
 			do{
 				
 				String phoneNumberString = c.getString(c.getColumnIndex(MMSCacheOpenHelper.COLUMN_RECIPIENTS));
@@ -62,6 +72,9 @@ public class DisplayConversationActivity extends ListActivity {
 				for(int k=0; k<pnArr.length; k++){
 				
 				  String name=pnArr[k];
+				  if(name.equals(PhnNo)){
+					  name = "Me";
+				  }else{
 			    	Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(pnArr[k]));
 			    	Cursor contactCursor = context.getContentResolver().query(uri, new String[]{PhoneLookup.DISPLAY_NAME}, null, null, null);
 			    	if(contactCursor!=null){
@@ -71,8 +84,11 @@ public class DisplayConversationActivity extends ListActivity {
 			    		}
 			    	}
 			    	contactCursor.close();
-			    	title += (k==0?"":", ")+name;
+				  }
+			    title += (k==0?"":", ")+name;
 				}
+				
+				recipients = title;
 		    	((TextView)findViewById(R.id.displayConversationTitle)).setText(title);
 			}while(c.moveToNext());
 			
@@ -121,6 +137,39 @@ public class DisplayConversationActivity extends ListActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void viewAllRecipients(View v){
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+				this);
+ 
+			// set title
+		alertDialogBuilder.setTitle("Recipients");
+ 
+			// set dialog message
+		
+		TextView t= new TextView(this);
+		t.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+		t.setText(recipients);
+		t.setMaxLines(20);
+		
+		alertDialogBuilder
+			.setCancelable(true)
+			.setView(t)
+						
+			
+			;
+		
+		
+		
+				// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+ 
+				// show it
+		alertDialog.show();
+		
+		
+			
 	}
 
 }
